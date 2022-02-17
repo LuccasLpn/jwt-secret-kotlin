@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.6.10"
 	kotlin("plugin.spring") version "1.6.10"
 	kotlin("plugin.jpa") version "1.6.10"
+	kotlin("kapt") version "1.5.10"
 }
 
 group = "academy"
@@ -23,6 +24,9 @@ repositories {
 }
 
 dependencies {
+
+	implementation("org.mapstruct:mapstruct:1.5.0.Beta2")
+	kapt("org.mapstruct:mapstruct-processor:1.5.0.Beta2")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
