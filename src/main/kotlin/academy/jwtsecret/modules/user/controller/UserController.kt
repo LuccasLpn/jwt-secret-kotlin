@@ -2,6 +2,7 @@ package academy.jwtsecret.modules.user.controller
 
 import academy.jwtsecret.modules.user.domain.User
 import academy.jwtsecret.modules.user.request.UserPost
+import academy.jwtsecret.modules.user.request.UserPut
 import academy.jwtsecret.modules.user.service.UserService
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
@@ -24,5 +25,11 @@ class UserController(private val userService: UserService){
     fun findById(@PathVariable id:Long): ResponseEntity<User>{
         val findById = userService.findById(id)
         return ResponseEntity(findById, HttpStatus.OK)
+    }
+
+    @PutMapping(path = ["/update"])
+    fun update(@RequestBody userPut: UserPut): ResponseEntity<User>{
+        val update = userService.update(userPut)
+        return ResponseEntity(update, HttpStatus.NO_CONTENT)
     }
 }
