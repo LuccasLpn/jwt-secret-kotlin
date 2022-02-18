@@ -25,6 +25,7 @@ repositories {
 
 dependencies {
 
+
 	implementation("org.mapstruct:mapstruct:1.5.0.Beta2")
 	kapt("org.mapstruct:mapstruct-processor:1.5.0.Beta2")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -37,6 +38,8 @@ dependencies {
 	runtimeOnly("mysql:mysql-connector-java")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("org.springframework.boot:spring-boot-devtools:2.6.2")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 }
 
 tasks.withType<KotlinCompile> {

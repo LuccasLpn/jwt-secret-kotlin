@@ -1,11 +1,28 @@
 package academy.jwtsecret.modules.user.controller
 
+import academy.jwtsecret.modules.user.domain.User
+import academy.jwtsecret.modules.user.request.UserPost
 import academy.jwtsecret.modules.user.service.UserService
 import lombok.RequiredArgsConstructor
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(path = ["/api/user"])
 class UserController(private val userService: UserService){
 
+
+    @PostMapping(path = ["/save"])
+    fun saveUser(@RequestBody userPost: UserPost): ResponseEntity<User>{
+        val saveUserPost = userService.insert(userPost)
+        return ResponseEntity(saveUserPost, HttpStatus.CREATED)
+    }
+
+    @GetMapping(path = ["/findById/{id}"])
+    fun findById(@PathVariable id:Long): ResponseEntity<User>{
+        val findById = userService.findById(id)
+        return ResponseEntity(findById, HttpStatus.OK)
+    }
 }

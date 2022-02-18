@@ -12,9 +12,9 @@ abstract class UserMapper {
     abstract fun toPost(userPost: UserPost): User
     abstract fun toPut(userPut: UserPut): User
 
-    
+
     companion object{
-        var INSTACE = Mappers.getMapperClass(UserMapper::class.java)
+        var INSTACE = Mappers.getMapper(UserMapper::class.java)
     }
 
 }
