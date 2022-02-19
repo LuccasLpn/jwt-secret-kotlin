@@ -38,6 +38,12 @@ class UserService(val userRepository: UserRepository){
         return userRepository.save(user)
     }
 
+    fun delete(id:Long): Any{
+        val userIdDelete = findById(id)
+        userRepository.delete(userIdDelete)
+        return "Delete SuccessFull"
+    }
+
 }
 
 @Bean
