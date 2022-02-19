@@ -17,8 +17,8 @@ class UserController(private val userService: UserService){
 
     @PostMapping(path = ["/save"])
     fun saveUser(@RequestBody userPost: UserPost): ResponseEntity<User>{
-        val saveUserPost = userService.insert(userPost)
-        return ResponseEntity(saveUserPost, HttpStatus.CREATED)
+        val savedUserPost = userService.insert(userPost)
+        return ResponseEntity(savedUserPost, HttpStatus.CREATED)
     }
 
     @GetMapping(path = ["/findById/{id}"])
@@ -27,9 +27,16 @@ class UserController(private val userService: UserService){
         return ResponseEntity(findById, HttpStatus.OK)
     }
 
+    @GetMapping(path = ["/findByEmail/{email}"])
+    fun findByEmail(@PathVariable email:String): ResponseEntity<MutableList<User>>{
+        val findByEmail = userService.findByEmailIgnoreCase(email)
+        return ResponseEntity(findByEmail, HttpStatus.OK)
+    }
+
     @PutMapping(path = ["/update"])
     fun update(@RequestBody userPut: UserPut): ResponseEntity<User>{
         val update = userService.update(userPut)
         return ResponseEntity(update, HttpStatus.NO_CONTENT)
     }
+
 }

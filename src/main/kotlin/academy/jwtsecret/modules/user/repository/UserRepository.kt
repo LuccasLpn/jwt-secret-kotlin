@@ -6,6 +6,6 @@ import java.util.*
 
 interface UserRepository : JpaRepository<User, Long> {
 
-    fun findByEmail(email: String): Optional<User>
+    fun findByEmailIgnoreCase(email: String): MutableList<User>
 
 }

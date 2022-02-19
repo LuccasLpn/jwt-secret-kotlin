@@ -20,16 +20,21 @@ class UserService(val userRepository: UserRepository){
         return userRepository.save(saveUser)
     }
 
-    fun findById(id:Long):User{
+    fun findById(id:Long): User {
         return userRepository.findById(id).orElseThrow(){
-            RuntimeException("ID NOT FOUND" + id)
+            RuntimeException("ID NOT FOUND " + id)
         }
     }
 
+    fun findByEmailIgnoreCase(email: String): MutableList<User> {
+        return userRepository.findByEmailIgnoreCase(email)
+    }
+
     fun update(userPut: UserPut): User{
-        userPut.user_id?.let { findById(it) }
+        userPut.id?.let { findById(it) }
         val user = UserMapper.INSTACE.toPut(userPut)
-        user.user_id = userPut.user_id
+        user.id = userPut.id
+        user.password = bCryptPasswordEncoder().encode(user.password)
         return userRepository.save(user)
     }
 
