@@ -17,6 +17,7 @@ class UserService(val userRepository: UserRepository){
 
     @Transactional
     fun insert(userPost: UserPost): User {
+        userPost.password = bCryptPasswordEncoder().encode(userPost.password)
         val saveUser = UserMapper.INSTACE.toPost(userPost)
         return userRepository.save(saveUser)
     }
@@ -53,6 +54,11 @@ class UserService(val userRepository: UserRepository){
         userRepository.deleteAll()
         return "Delete SuccessFull"
     }
+
+    fun findByUsername(username:String): User{
+        return userRepository.findByUsername(username)
+    }
+
 }
 
 @Bean

@@ -17,7 +17,6 @@ class UserController(private val userService: UserService){
     @PostMapping(path = ["/save"])
     fun saveUser(@RequestBody userPost: UserPost): ResponseEntity<User>{
         val savedUserPost = userService.insert(userPost)
-
         return ResponseEntity(savedUserPost, HttpStatus.CREATED)
     }
 
@@ -55,6 +54,12 @@ class UserController(private val userService: UserService){
     fun deleteAllUser(): ResponseEntity<Any>{
         val deleteAll = userService.deleteAll()
         return ResponseEntity(deleteAll,HttpStatus.OK)
+    }
+
+    @GetMapping(path = ["/findByUsername/{username}"])
+    fun findByUsername(@PathVariable username:String): ResponseEntity<User>{
+        val findByUsername = userService.findByUsername(username)
+        return ResponseEntity(findByUsername, HttpStatus.OK)
     }
 
 }
