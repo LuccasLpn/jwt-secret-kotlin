@@ -4,6 +4,7 @@ import academy.jwtsecret.modules.user.domain.User
 import academy.jwtsecret.modules.user.request.UserPost
 import academy.jwtsecret.modules.user.request.UserPut
 import org.mapstruct.Mapper
+import org.mapstruct.Mapping
 import org.mapstruct.factory.Mappers
 
 @Mapper()

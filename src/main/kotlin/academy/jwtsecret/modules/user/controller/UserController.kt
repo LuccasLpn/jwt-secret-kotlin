@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping(path = ["/api/user"])
 class UserController(private val userService: UserService){
 
-
     @PostMapping(path = ["/save"])
     fun saveUser(@RequestBody userPost: UserPost): ResponseEntity<User>{
         val savedUserPost = userService.insert(userPost)
+
         return ResponseEntity(savedUserPost, HttpStatus.CREATED)
     }
 
@@ -43,6 +43,12 @@ class UserController(private val userService: UserService){
     fun delete(@PathVariable id:Long): ResponseEntity<Any>{
         val userIdDelete = userService.delete(id)
         return ResponseEntity(userIdDelete,HttpStatus.OK)
+    }
+
+    @GetMapping(path = ["/findAllUser"])
+    fun findAll(): ResponseEntity<MutableList<User>>{
+        val findAllUser = userService.findAll()
+        return ResponseEntity(findAllUser, HttpStatus.OK)
     }
 
 }

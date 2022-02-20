@@ -9,20 +9,21 @@ import lombok.RequiredArgsConstructor
 import org.springframework.context.annotation.Bean
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 @RequiredArgsConstructor
 class UserService(val userRepository: UserRepository){
 
-    fun insert(userPost: UserPost): User{
-        userPost.password = bCryptPasswordEncoder().encode(userPost.password)
+    @Transactional
+    fun insert(userPost: UserPost): User {
         val saveUser = UserMapper.INSTACE.toPost(userPost)
         return userRepository.save(saveUser)
     }
 
     fun findById(id:Long): User {
         return userRepository.findById(id).orElseThrow(){
-            RuntimeException("ID NOT FOUND " + id)
+            RuntimeException("ID NOT FOUND $id")
         }
     }
 
@@ -31,10 +32,10 @@ class UserService(val userRepository: UserRepository){
     }
 
     fun update(userPut: UserPut): User{
+        userPut.password = bCryptPasswordEncoder().encode(userPut.password)
         userPut.id?.let { findById(it) }
         val user = UserMapper.INSTACE.toPut(userPut)
         user.id = userPut.id
-        user.password = bCryptPasswordEncoder().encode(user.password)
         return userRepository.save(user)
     }
 
@@ -42,6 +43,10 @@ class UserService(val userRepository: UserRepository){
         val userIdDelete = findById(id)
         userRepository.delete(userIdDelete)
         return "Delete SuccessFull"
+    }
+
+    fun findAll(): MutableList<User>{
+        return userRepository.findAll()
     }
 
 }

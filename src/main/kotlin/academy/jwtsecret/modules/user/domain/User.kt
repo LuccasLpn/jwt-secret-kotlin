@@ -2,6 +2,7 @@ package academy.jwtsecret.modules.user.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import lombok.AllArgsConstructor
+import lombok.Builder
 import lombok.Data
 import lombok.NoArgsConstructor
 import javax.persistence.*
@@ -11,6 +12,7 @@ import javax.persistence.*
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 class User {
 
     @Id
@@ -22,5 +24,6 @@ class User {
     var password: String? = null
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     var authorities: String? = null
+
 
 }

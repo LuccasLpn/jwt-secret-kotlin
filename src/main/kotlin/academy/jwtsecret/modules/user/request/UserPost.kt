@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-class UserPost {
+class UserPost{
 
     var username: String? = null
     var email: String? = null
