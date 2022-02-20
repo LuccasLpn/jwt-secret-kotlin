@@ -51,4 +51,10 @@ class UserController(private val userService: UserService){
         return ResponseEntity(findAllUser, HttpStatus.OK)
     }
 
+    @DeleteMapping(path = ["/deleteAllUser"])
+    fun deleteAllUser(): ResponseEntity<Any>{
+        val deleteAll = userService.deleteAll()
+        return ResponseEntity(deleteAll,HttpStatus.OK)
+    }
+
 }

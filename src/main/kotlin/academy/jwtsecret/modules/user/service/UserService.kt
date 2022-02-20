@@ -49,6 +49,10 @@ class UserService(val userRepository: UserRepository){
         return userRepository.findAll()
     }
 
+    fun deleteAll(): Any{
+        userRepository.deleteAll()
+        return "Delete SuccessFull"
+    }
 }
 
 @Bean
