@@ -30,5 +30,9 @@ class EmployeeService(val employeeRepository: EmployeeRepository) {
         return employeeRepository.save(tosavedPut)
     }
 
+    fun findAll(): MutableList<Employee>{
+        return employeeRepository.findAll()
+    }
+
 
 }

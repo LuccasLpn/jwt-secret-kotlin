@@ -7,6 +7,7 @@ import academy.jwtsecret.modules.employee.service.EmployeeService
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -31,6 +32,12 @@ class EmployeeController (val employeeService: EmployeeService){
     fun update(@RequestBody employeePut: EmployeePut): ResponseEntity<Employee>{
         val updateEmployee = employeeService.update(employeePut)
         return ResponseEntity(updateEmployee, HttpStatus.OK)
+    }
+
+    @GetMapping(path = ["/findAllEmplyee"])
+    fun findAll(): ResponseEntity<MutableList<Employee>>{
+        val findAllEmployee = employeeService.findAll()
+        return ResponseEntity(findAllEmployee,HttpStatus.OK)
     }
 
 
