@@ -15,5 +15,6 @@ services:
     volumes:
       - jwt-secret_data:/var/lib/mysql
     mem_limit: 512m
+
 volumes:
   jwt-secret_data:

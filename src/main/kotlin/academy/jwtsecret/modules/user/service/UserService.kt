@@ -18,12 +18,12 @@ class UserService(val userRepository: UserRepository){
     @Transactional
     fun insert(userPost: UserPost): User {
         userPost.password = bCryptPasswordEncoder().encode(userPost.password)
-        val saveUser = UserMapper.INSTACE.toPost(userPost)
-        return userRepository.save(saveUser)
+        val savedUser = UserMapper.INSTACE.toPost(userPost)
+        return userRepository.save(savedUser)
     }
 
     fun findById(id:Long): User {
-        return userRepository.findById(id).orElseThrow(){
+        return userRepository.findById(id).orElseThrow() {
             RuntimeException("ID NOT FOUND $id")
         }
     }
@@ -32,7 +32,7 @@ class UserService(val userRepository: UserRepository){
         return userRepository.findByEmailIgnoreCase(email)
     }
 
-    fun update(userPut: UserPut): User{
+    fun update(userPut: UserPut): User {
         userPut.password = bCryptPasswordEncoder().encode(userPut.password)
         userPut.id?.let { findById(it) }
         val user = UserMapper.INSTACE.toPut(userPut)
@@ -40,23 +40,27 @@ class UserService(val userRepository: UserRepository){
         return userRepository.save(user)
     }
 
-    fun delete(id:Long): Any{
+    fun delete(id:Long): Any {
         val userIdDelete = findById(id)
         userRepository.delete(userIdDelete)
         return "Delete SuccessFull"
     }
 
-    fun findAll(): MutableList<User>{
+    fun findAll(): MutableList<User> {
         return userRepository.findAll()
     }
 
-    fun deleteAll(): Any{
+    fun deleteAll(): Any {
         userRepository.deleteAll()
         return "Delete SuccessFull"
     }
 
-    fun findByUsername(username:String): User{
+    fun findByUsername(username:String): User {
         return userRepository.findByUsername(username)
+    }
+
+    fun findByAuthorities(authorities:String): User {
+        return userRepository.findByAuthorities(authorities)
     }
 
 }
