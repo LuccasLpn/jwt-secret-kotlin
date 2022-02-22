@@ -64,6 +64,12 @@ class EmployeeController (val employeeService: EmployeeService){
         return ResponseEntity(findByCargo, HttpStatus.OK)
     }
 
+    @GetMapping(path = ["/findBySetor/{setor}"])
+    fun findBySetor(@PathVariable setor: String): ResponseEntity<MutableList<Employee>>{
+        val findBySetor = employeeService.findBySetor(setor)
+        return ResponseEntity(findBySetor, HttpStatus.OK)
+    }
+
 
 
 }

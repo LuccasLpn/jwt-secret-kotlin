@@ -8,4 +8,5 @@ interface EmployeeRepository: JpaRepository<Employee, Long> {
 
     fun findByNameIgnoreCase(name: String): Employee
     fun findByCargoIgnoreCase(cargo: String): MutableList<Employee>
+    fun findBySetorIgnoreCase(setor: String): MutableList<Employee>
 }

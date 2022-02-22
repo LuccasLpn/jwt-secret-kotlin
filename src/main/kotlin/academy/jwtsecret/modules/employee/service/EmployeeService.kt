@@ -49,4 +49,8 @@ class EmployeeService(val employeeRepository: EmployeeRepository) {
         return employeeRepository.findByCargoIgnoreCase(cargo)
     }
 
+    fun findBySetor(setor:String): MutableList<Employee>{
+        return employeeRepository.findBySetorIgnoreCase(setor)
+    }
+
 }
