@@ -7,7 +7,9 @@ import academy.jwtsecret.modules.employee.service.EmployeeService
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -34,10 +36,22 @@ class EmployeeController (val employeeService: EmployeeService){
         return ResponseEntity(updateEmployee, HttpStatus.OK)
     }
 
-    @GetMapping(path = ["/findAllEmplyee"])
+    @DeleteMapping(path = ["/delete/{id}"])
+    fun delete(@PathVariable id: Long): ResponseEntity<Any>{
+        val deleteEmployee = employeeService.delete(id)
+        return ResponseEntity(deleteEmployee, HttpStatus.OK)
+    }
+
+    @GetMapping(path = ["/findAllEmployee"])
     fun findAll(): ResponseEntity<MutableList<Employee>>{
         val findAllEmployee = employeeService.findAll()
         return ResponseEntity(findAllEmployee,HttpStatus.OK)
+    }
+
+    @GetMapping(path = ["/findById/{id}"])
+    fun findById(@PathVariable id:Long): ResponseEntity<Employee>{
+        val findByIdEmployee = employeeService.findById(id)
+        return ResponseEntity(findByIdEmployee,HttpStatus.OK)
     }
 
 

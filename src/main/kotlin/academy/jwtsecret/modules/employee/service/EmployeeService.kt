@@ -17,12 +17,6 @@ class EmployeeService(val employeeRepository: EmployeeRepository) {
         return employeeRepository.save(savedPost)
     }
 
-    fun findById(id: Long): Employee{
-        return employeeRepository.findById(id).orElseThrow(){
-            -> RuntimeException ("ID Not Found$id")
-        }
-    }
-
     fun update(employeePut: EmployeePut): Employee{
         val findById = employeePut.id?.let { findById(it) }
         val tosavedPut = EmployeeMapper.INSTACE.toPut(employeePut)
@@ -30,9 +24,21 @@ class EmployeeService(val employeeRepository: EmployeeRepository) {
         return employeeRepository.save(tosavedPut)
     }
 
+    fun delete(id:Long): Any{
+        val findByIdEmployee = findById(id)
+        employeeRepository.delete(findByIdEmployee)
+        return "Delete SuccessFull Employee ID - $id"
+    }
+
+
+    fun findById(id: Long): Employee{
+        return employeeRepository.findById(id).orElseThrow(){
+            -> RuntimeException ("ID Not Found$id")
+        }
+    }
+
     fun findAll(): MutableList<Employee>{
         return employeeRepository.findAll()
     }
-
 
 }
