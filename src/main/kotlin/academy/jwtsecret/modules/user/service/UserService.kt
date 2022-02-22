@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional
 class UserService(val userRepository: UserRepository){
 
     @Transactional
-    fun insert(userPost: UserPost): User {
+    fun save(userPost: UserPost): User {
         userPost.password = bCryptPasswordEncoder().encode(userPost.password)
         val savedUser = UserMapper.INSTACE.toPost(userPost)
         return userRepository.save(savedUser)

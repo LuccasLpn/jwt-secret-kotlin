@@ -15,5 +15,8 @@ class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
+    var name: String? = null
+    var cnpj: String? = null
+
 
 }

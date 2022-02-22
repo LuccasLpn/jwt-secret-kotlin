@@ -1,5 +1,6 @@
 package academy.jwtsecret.modules.employee.domain
 
+import academy.jwtsecret.modules.company.domain.Company
 import lombok.AllArgsConstructor
 import lombok.NoArgsConstructor
 import javax.persistence.*
