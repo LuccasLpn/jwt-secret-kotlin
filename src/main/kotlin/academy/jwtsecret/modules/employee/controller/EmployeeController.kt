@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequiredArgsConstructor
 class EmployeeController (val employeeService: EmployeeService){
 
-
-
     @PostMapping(path = ["/save"])
     fun save(@RequestBody employeePost: EmployeePost): ResponseEntity<Employee>{
         val savedEmployee = employeeService.save(employeePost)
@@ -52,6 +50,12 @@ class EmployeeController (val employeeService: EmployeeService){
     fun findById(@PathVariable id:Long): ResponseEntity<Employee>{
         val findByIdEmployee = employeeService.findById(id)
         return ResponseEntity(findByIdEmployee,HttpStatus.OK)
+    }
+
+    @GetMapping(path = ["/findByName/{name}"])
+    fun findByName(@PathVariable name:String): ResponseEntity<Employee>{
+        val findByNameEmployee = employeeService.findByName(name)
+        return ResponseEntity(findByNameEmployee, HttpStatus.OK)
     }
 
 

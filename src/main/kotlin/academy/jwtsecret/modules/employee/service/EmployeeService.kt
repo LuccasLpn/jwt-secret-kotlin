@@ -41,4 +41,9 @@ class EmployeeService(val employeeRepository: EmployeeRepository) {
         return employeeRepository.findAll()
     }
 
+    fun findByName(name: String): Employee{
+        val findByNameEmployee = employeeRepository.findByName(name)
+        return findByNameEmployee
+    }
+
 }
