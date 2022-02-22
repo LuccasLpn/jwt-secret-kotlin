@@ -16,6 +16,7 @@ class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
     var name: String? = null
-
+    var cargo: String? = null
+    var setor: String? = null
 
 }
