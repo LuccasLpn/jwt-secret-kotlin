@@ -42,8 +42,11 @@ class EmployeeService(val employeeRepository: EmployeeRepository) {
     }
 
     fun findByName(name: String): Employee{
-        val findByNameEmployee = employeeRepository.findByName(name)
-        return findByNameEmployee
+        return employeeRepository.findByNameIgnoreCase(name)
+    }
+
+    fun findByCargo(cargo: String): MutableList<Employee>{
+        return employeeRepository.findByCargoIgnoreCase(cargo)
     }
 
 }

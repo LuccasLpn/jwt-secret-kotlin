@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface EmployeeRepository: JpaRepository<Employee, Long> {
 
-    fun findByName(name: String): Employee
-
+    fun findByNameIgnoreCase(name: String): Employee
+    fun findByCargoIgnoreCase(cargo: String): MutableList<Employee>
 }

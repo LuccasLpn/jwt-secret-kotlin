@@ -58,6 +58,12 @@ class EmployeeController (val employeeService: EmployeeService){
         return ResponseEntity(findByNameEmployee, HttpStatus.OK)
     }
 
+    @GetMapping(path = ["/findByCargo/{cargo}"])
+    fun findByCargo(@PathVariable cargo:String): ResponseEntity<MutableList<Employee>>{
+        val findByCargo = employeeService.findByCargo(cargo)
+        return ResponseEntity(findByCargo, HttpStatus.OK)
+    }
+
 
 
 }
