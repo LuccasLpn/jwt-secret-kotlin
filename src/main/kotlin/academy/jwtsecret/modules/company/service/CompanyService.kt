@@ -30,7 +30,9 @@ class CompanyService (val companyRepository: CompanyRepository){
         return "Delete SuccessFull Company ID $id"
     }
 
-
+    fun findAll(): MutableList<Company>{
+        return companyRepository.findAll()
+    }
 
     fun findById(id:Long): Company{
         return companyRepository.findById(id).orElseThrow {
