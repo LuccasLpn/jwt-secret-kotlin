@@ -6,6 +6,7 @@ import academy.jwtsecret.modules.company.repository.CompanyRepository
 import academy.jwtsecret.modules.company.request.CompanyPost
 import academy.jwtsecret.modules.company.request.CompanyPut
 import lombok.RequiredArgsConstructor
+import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 
 @Service
@@ -31,7 +32,7 @@ class CompanyService (val companyRepository: CompanyRepository){
     }
 
     fun findAll(): MutableList<Company>{
-        return companyRepository.findAll()
+        return companyRepository.findAll(Sort.by(Sort.Direction.ASC, ""))
     }
 
     fun findById(id:Long): Company{
@@ -39,7 +40,5 @@ class CompanyService (val companyRepository: CompanyRepository){
             -> RuntimeException ("ID Not Found$id")
         }
     }
-
-
 
 }
