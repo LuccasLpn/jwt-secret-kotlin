@@ -14,16 +14,20 @@ class CompanyService (val companyRepository: CompanyRepository){
 
     fun save(companyPost: CompanyPost): Company{
         val companyPostSave = CompanyMapper.INSTACE.toPost(companyPost)
-        val save = companyRepository.save(companyPostSave)
-        return save;
+        return companyRepository.save(companyPostSave)
     }
 
     fun update(companyPut: CompanyPut): Company{
         val findById = companyPut.id?.let { findById(it) }
         val toSavedPut = CompanyMapper.INSTACE.toPut(companyPut)
         toSavedPut.id = findById?.id
-        val savedPut = companyRepository.save(toSavedPut)
-        return savedPut
+        return companyRepository.save(toSavedPut)
+    }
+
+    fun delete(id:Long): Any{
+        val findById = findById(id)
+        companyRepository.delete(findById)
+        return "Delete SuccessFull Company ID $id"
     }
 
 
