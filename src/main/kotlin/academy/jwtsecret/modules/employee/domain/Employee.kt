@@ -1,9 +1,11 @@
 package academy.jwtsecret.modules.employee.domain
 
-import academy.jwtsecret.modules.company.domain.Company
 import lombok.AllArgsConstructor
 import lombok.NoArgsConstructor
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 
 @Entity(name = "TB_EMPLOYEE")
@@ -17,8 +19,5 @@ class Employee {
     var name: String? = null
     var cargo: String? = null
     var setor: String? = null
-
-    @OneToMany(mappedBy = "employee")
-    var company: List<Company>? = null
 
 }

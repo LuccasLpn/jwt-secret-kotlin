@@ -6,7 +6,6 @@ import academy.jwtsecret.modules.company.repository.CompanyRepository
 import academy.jwtsecret.modules.company.request.CompanyPost
 import academy.jwtsecret.modules.company.request.CompanyPut
 import academy.jwtsecret.modules.employee.repository.EmployeeRepository
-import academy.jwtsecret.modules.exception.ValidationException
 import lombok.RequiredArgsConstructor
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
@@ -24,9 +23,11 @@ class CompanyService (val companyRepository: CompanyRepository,
     }
 
     fun update(companyPut: CompanyPut): Company{
+        val employeeName = companyPut.nameEmployee?.let { employeeRepository.findByNameIgnoreCase(it) }
         val findById = companyPut.id?.let { findById(it) }
         val toSavedPut = CompanyMapper.INSTACE.toPut(companyPut)
         toSavedPut.id = findById?.id
+        toSavedPut.employee = employeeName
         return companyRepository.save(toSavedPut)
     }
 
@@ -37,7 +38,7 @@ class CompanyService (val companyRepository: CompanyRepository,
     }
 
     fun findAll(): MutableList<Company>{
-        return companyRepository.findAll(Sort.by(Sort.Direction.ASC, ""))
+        return companyRepository.findAll(Sort.by(Sort.Direction.ASC, "employee_name"))
     }
 
     fun findById(id:Long): Company{

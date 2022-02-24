@@ -4,7 +4,6 @@ import academy.jwtsecret.modules.company.domain.Company
 import academy.jwtsecret.modules.company.request.CompanyPost
 import academy.jwtsecret.modules.company.request.CompanyPut
 import academy.jwtsecret.modules.company.service.CompanyService
-import academy.jwtsecret.modules.exception.ValidationException
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
