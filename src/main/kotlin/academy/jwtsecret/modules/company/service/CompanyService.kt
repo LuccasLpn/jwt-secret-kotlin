@@ -5,16 +5,21 @@ import academy.jwtsecret.modules.company.mapper.CompanyMapper
 import academy.jwtsecret.modules.company.repository.CompanyRepository
 import academy.jwtsecret.modules.company.request.CompanyPost
 import academy.jwtsecret.modules.company.request.CompanyPut
+import academy.jwtsecret.modules.employee.repository.EmployeeRepository
+import academy.jwtsecret.modules.exception.ValidationException
 import lombok.RequiredArgsConstructor
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 
 @Service
 @RequiredArgsConstructor
-class CompanyService (val companyRepository: CompanyRepository){
+class CompanyService (val companyRepository: CompanyRepository,
+                      val employeeRepository: EmployeeRepository){
 
     fun save(companyPost: CompanyPost): Company{
+        val employeeName = companyPost.nameEmployee?.let { employeeRepository.findByNameIgnoreCase(it) }
         val companyPostSave = CompanyMapper.INSTACE.toPost(companyPost)
+        companyPostSave.employee = employeeName
         return companyRepository.save(companyPostSave)
     }
 
@@ -40,5 +45,6 @@ class CompanyService (val companyRepository: CompanyRepository){
             -> RuntimeException ("ID Not Found$id")
         }
     }
+
 
 }

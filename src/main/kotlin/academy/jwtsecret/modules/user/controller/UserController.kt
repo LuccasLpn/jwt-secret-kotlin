@@ -16,7 +16,7 @@ class UserController(private val userService: UserService){
 
     @PostMapping(path = ["/save"])
     fun saveUser(@RequestBody userPost: UserPost): ResponseEntity<User>{
-        val savedUser = userService.insert(userPost)
+        val savedUser = userService.save(userPost)
         return ResponseEntity(savedUser, HttpStatus.CREATED)
     }
 

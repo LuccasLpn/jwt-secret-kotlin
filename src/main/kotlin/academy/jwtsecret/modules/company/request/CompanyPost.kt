@@ -10,5 +10,6 @@ class CompanyPost {
 
     var name: String? = null
     var cnpj: String? = null
+    var nameEmployee: String? = null
 
 }

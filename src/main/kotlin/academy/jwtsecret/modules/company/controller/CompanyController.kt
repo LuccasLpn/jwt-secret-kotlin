@@ -4,10 +4,12 @@ import academy.jwtsecret.modules.company.domain.Company
 import academy.jwtsecret.modules.company.request.CompanyPost
 import academy.jwtsecret.modules.company.request.CompanyPut
 import academy.jwtsecret.modules.company.service.CompanyService
+import academy.jwtsecret.modules.exception.ValidationException
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping(path = ["/api/company"])
@@ -16,7 +18,8 @@ class CompanyController (val companyService: CompanyService){
 
 
     @PostMapping(path = ["/save"])
-    fun save(@RequestBody companyPost: CompanyPost): ResponseEntity<Company>{
+    fun save(@RequestBody @Valid
+        companyPost: CompanyPost): ResponseEntity<Company>{
         val saveCompany = companyService.save(companyPost)
         return ResponseEntity(saveCompany, HttpStatus.CREATED)
     }

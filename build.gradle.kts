@@ -40,6 +40,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-devtools:2.6.2")
 	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("javax.validation:validation-api:2.0.1.Final")
 }
 
 tasks.withType<KotlinCompile> {

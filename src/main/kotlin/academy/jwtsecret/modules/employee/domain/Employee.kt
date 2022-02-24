@@ -18,4 +18,7 @@ class Employee {
     var cargo: String? = null
     var setor: String? = null
 
+    @OneToMany(mappedBy = "employee")
+    var company: List<Company>? = null
+
 }
