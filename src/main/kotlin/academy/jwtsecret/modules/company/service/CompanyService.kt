@@ -53,6 +53,9 @@ class CompanyService (val companyRepository: CompanyRepository,
         if (company.name!!.isEmpty()){
             throw ValidationException("Company Name is Not Null")
         }
+        if(company.cnpj!!.isEmpty()){
+            throw ValidationException("Company Cnpj is Not Null")
+        }
     }
 
 
