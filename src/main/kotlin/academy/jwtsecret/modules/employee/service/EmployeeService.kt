@@ -5,6 +5,7 @@ import academy.jwtsecret.modules.employee.mapper.EmployeeMapper
 import academy.jwtsecret.modules.employee.repository.EmployeeRepository
 import academy.jwtsecret.modules.employee.request.EmployeePost
 import academy.jwtsecret.modules.employee.request.EmployeePut
+import academy.jwtsecret.modules.exception.UserAlreadyExistsException
 import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Service
 
@@ -13,11 +14,12 @@ import org.springframework.stereotype.Service
 class EmployeeService(val employeeRepository: EmployeeRepository) {
 
     fun save(employeePost: EmployeePost): Employee{
+        validationDateEmployee(employeePost)
         val savedPost = EmployeeMapper.INSTACE.toPost(employeePost)
         return employeeRepository.save(savedPost)
     }
 
-    fun update(employeePut: EmployeePut): Employee{
+    fun update(employeePut: EmployeePut): Employee {
         val findById = employeePut.id?.let { findById(it) }
         val tosavedPut = EmployeeMapper.INSTACE.toPut(employeePut)
         tosavedPut.id = findById?.id
@@ -52,5 +54,19 @@ class EmployeeService(val employeeRepository: EmployeeRepository) {
     fun findBySetor(setor:String): MutableList<Employee>{
         return employeeRepository.findBySetorIgnoreCase(setor)
     }
+
+    fun validationDateEmployee(employeePost: EmployeePost){
+        if (employeePost.cargo!!.isEmpty()){
+            throw UserAlreadyExistsException("Employee Cargo is Not Null")
+        }
+        if (employeePost.name!!.isEmpty()){
+            throw UserAlreadyExistsException("Employee Name is Not Null")
+        }
+        if(employeePost.setor!!.isEmpty()){
+            throw UserAlreadyExistsException("Employee Setor is Not Null")
+        }
+    }
+
+
 
 }

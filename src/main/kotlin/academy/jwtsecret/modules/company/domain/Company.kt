@@ -16,10 +16,10 @@ class Company {
     var id: Long? = null
     var name: String? = null
     var cnpj: String? = null
-
-    @ManyToOne
-    @JoinColumn(name = "employee_name")
+    @ManyToOne(cascade = [( CascadeType.ALL)])
+    @JoinColumn(name = "employee_name", referencedColumnName = "name")
     var employee: Employee? = null
+
 
 
 }

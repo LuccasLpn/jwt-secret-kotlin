@@ -13,7 +13,7 @@ abstract class EmployeeMapper {
     abstract fun toPut(employeePut: EmployeePut): Employee
 
     companion object{
-            var INSTACE = Mappers.getMapper(EmployeeMapper::class.java)
+        var INSTACE = Mappers.getMapper(EmployeeMapper::class.java)
     }
 
 }

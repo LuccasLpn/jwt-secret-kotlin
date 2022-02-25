@@ -14,4 +14,5 @@ class EmployeePost {
     var name: String? = null
     var cargo: String? = null
     var setor: String? = null
+
 }

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service
 class CompanyService (val companyRepository: CompanyRepository,
                       val employeeRepository: EmployeeRepository){
 
-    fun save(companyPost: CompanyPost): Company{
+    fun save(companyPost: CompanyPost): Company {
         val employeeName = companyPost.nameEmployee?.let { employeeRepository.findByNameIgnoreCase(it) }
         val companyPostSave = CompanyMapper.INSTACE.toPost(companyPost)
         companyPostSave.employee = employeeName
