@@ -6,6 +6,7 @@ import academy.jwtsecret.modules.company.repository.CompanyRepository
 import academy.jwtsecret.modules.company.request.CompanyPost
 import academy.jwtsecret.modules.company.request.CompanyPut
 import academy.jwtsecret.modules.employee.repository.EmployeeRepository
+import academy.jwtsecret.modules.exception.ValidationException
 import lombok.RequiredArgsConstructor
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
@@ -19,6 +20,7 @@ class CompanyService (val companyRepository: CompanyRepository,
         val employeeName = companyPost.nameEmployee?.let { employeeRepository.findByNameIgnoreCase(it) }
         val companyPostSave = CompanyMapper.INSTACE.toPost(companyPost)
         companyPostSave.employee = employeeName
+        validationDateCompanySave(companyPostSave)
         return companyRepository.save(companyPostSave)
     }
 
@@ -44,6 +46,12 @@ class CompanyService (val companyRepository: CompanyRepository,
     fun findById(id:Long): Company{
         return companyRepository.findById(id).orElseThrow {
             -> RuntimeException ("ID Not Found$id")
+        }
+    }
+
+    fun validationDateCompanySave(company: Company){
+        if (company.name!!.isEmpty()){
+            throw ValidationException("Company Name is Not Null")
         }
     }
 

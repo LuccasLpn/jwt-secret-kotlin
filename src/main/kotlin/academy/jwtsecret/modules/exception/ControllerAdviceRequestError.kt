@@ -11,8 +11,8 @@ import java.util.Date
 
 @ControllerAdvice
 class ControllerAdviceRequestError : ResponseEntityExceptionHandler() {
-    @ExceptionHandler(value = [(UserAlreadyExistsException::class)])
-    fun handleUserAlreadyExists(ex: UserAlreadyExistsException,request: WebRequest): ResponseEntity<ErrorsDetails> {
+    @ExceptionHandler(value = [(ValidationException::class)])
+    fun handleUserAlreadyExists(ex: ValidationException, request: WebRequest): ResponseEntity<ErrorsDetails> {
         val sdf = SimpleDateFormat("dd/MM/yyyy HH:mmm")
         val errorDetails = ErrorsDetails(sdf.format(Date()),
             "Validation Failed",

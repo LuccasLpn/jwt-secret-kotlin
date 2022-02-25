@@ -4,7 +4,6 @@ import academy.jwtsecret.modules.employee.domain.Employee
 import academy.jwtsecret.modules.employee.request.EmployeePost
 import academy.jwtsecret.modules.employee.request.EmployeePut
 import academy.jwtsecret.modules.employee.service.EmployeeService
-import academy.jwtsecret.modules.exception.UserAlreadyExistsException
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
