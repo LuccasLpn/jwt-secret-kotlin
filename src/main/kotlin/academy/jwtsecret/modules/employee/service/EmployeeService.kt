@@ -33,7 +33,6 @@ class EmployeeService(val employeeRepository: EmployeeRepository) {
         return "Delete SuccessFull Employee ID - $id"
     }
 
-
     fun findById(id: Long): Employee{
         return employeeRepository.findById(id).orElseThrow(){
             -> RuntimeException ("ID Not Found$id")
@@ -54,6 +53,10 @@ class EmployeeService(val employeeRepository: EmployeeRepository) {
 
     fun findBySetor(setor:String): MutableList<Employee>{
         return employeeRepository.findBySetorIgnoreCase(setor)
+    }
+
+    fun findBySetorContaining(setor:String): MutableList<Employee>{
+        return employeeRepository.findBySetorIgnoreCaseContaining(setor)
     }
 
     fun validationDateEmployeeSaved(employee: Employee){

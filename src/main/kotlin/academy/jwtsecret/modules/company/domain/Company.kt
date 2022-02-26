@@ -11,7 +11,8 @@ import javax.persistence.*
 @NoArgsConstructor
 class Company {
 
-    @Column(name = "ID")@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     var id: Long? = null
     @Column(name = "NAME")
     var name: String? = null

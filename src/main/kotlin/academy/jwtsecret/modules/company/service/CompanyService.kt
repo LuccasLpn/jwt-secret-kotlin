@@ -39,9 +39,6 @@ class CompanyService (val companyRepository: CompanyRepository,
         return "Delete SuccessFull Company ID $id"
     }
 
-    fun deleteAll(){
-        return  companyRepository.deleteAll()
-    }
 
     fun findAll(): MutableList<Company>{
         return companyRepository.findAll(Sort.by(Sort.Direction.ASC, "employee_name"))
@@ -49,7 +46,7 @@ class CompanyService (val companyRepository: CompanyRepository,
 
     fun findById(id:Long): Company{
         return companyRepository.findById(id).orElseThrow {
-            -> RuntimeException ("ID Not Found$id")
+            -> ValidationException ("ID Not Found $id")
         }
     }
 
