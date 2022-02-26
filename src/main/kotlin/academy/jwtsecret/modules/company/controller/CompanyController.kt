@@ -35,6 +35,12 @@ class CompanyController (val companyService: CompanyService){
         return ResponseEntity(deleteCompany, HttpStatus.NO_CONTENT)
     }
 
+    @DeleteMapping(path = ["/deleteAll"])
+    fun deleteAll(): ResponseEntity<Any>{
+        val deleteAll = companyService.deleteAll()
+        return ResponseEntity(deleteAll, HttpStatus.NO_CONTENT)
+    }
+
     @GetMapping(path = ["/findAllCompany"])
     fun findAll(): ResponseEntity<MutableList<Company>>{
         val findAllCompany = companyService.findAll()

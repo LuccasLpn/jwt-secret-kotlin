@@ -11,10 +11,11 @@ import javax.persistence.*
 @NoArgsConstructor
 class Company {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
+    @Column(name = "NAME")
     var name: String? = null
+    @Column(name = "CNPJ")
     var cnpj: String? = null
     @ManyToOne(cascade = [( CascadeType.ALL)])
     @JoinColumn(name = "employee_name", referencedColumnName = "name")

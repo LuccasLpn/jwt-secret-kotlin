@@ -18,10 +18,10 @@ class CompanyService (val companyRepository: CompanyRepository,
 
     fun save(companyPost: CompanyPost): Company {
         val employeeName = companyPost.nameEmployee?.let { employeeRepository.findByNameIgnoreCase(it) }
-        val companyPostSave = CompanyMapper.INSTACE.toPost(companyPost)
-        companyPostSave.employee = employeeName
-        validationDateCompanySave(companyPostSave)
-        return companyRepository.save(companyPostSave)
+            val companyPostSave = CompanyMapper.INSTACE.toPost(companyPost)
+            companyPostSave.employee = employeeName
+            validationDateCompanySave(companyPostSave)
+            return companyRepository.save(companyPostSave)
     }
 
     fun update(companyPut: CompanyPut): Company{
@@ -39,6 +39,10 @@ class CompanyService (val companyRepository: CompanyRepository,
         return "Delete SuccessFull Company ID $id"
     }
 
+    fun deleteAll(){
+        return  companyRepository.deleteAll()
+    }
+
     fun findAll(): MutableList<Company>{
         return companyRepository.findAll(Sort.by(Sort.Direction.ASC, "employee_name"))
     }
@@ -49,14 +53,12 @@ class CompanyService (val companyRepository: CompanyRepository,
         }
     }
 
-    fun validationDateCompanySave(company: Company){
-        if (company.name!!.isEmpty()){
+    fun validationDateCompanySave(company: Company) {
+        if (company.name!!.isEmpty()) {
             throw ValidationException("Company Name is Not Null")
         }
-        if(company.cnpj!!.isEmpty()){
+        if (company.cnpj!!.isEmpty()) {
             throw ValidationException("Company Cnpj is Not Null")
         }
     }
-
-
 }
