@@ -18,10 +18,10 @@ class CompanyService (val companyRepository: CompanyRepository,
 
     fun save(companyPost: CompanyPost): Company {
         val employeeName = companyPost.nameEmployee?.let { employeeRepository.findByNameIgnoreCase(it) }
-            val companyPostSave = CompanyMapper.INSTACE.toPost(companyPost)
-            companyPostSave.employee = employeeName
-            validationDateCompanySave(companyPostSave)
-            return companyRepository.save(companyPostSave)
+        val companyPostSave = CompanyMapper.INSTACE.toPost(companyPost)
+        companyPostSave.employee = employeeName
+        validationDateCompanySave(companyPostSave)
+        return companyRepository.save(companyPostSave)
     }
 
     fun update(companyPut: CompanyPut): Company{
@@ -48,6 +48,10 @@ class CompanyService (val companyRepository: CompanyRepository,
         return companyRepository.findById(id).orElseThrow {
             -> ValidationException ("ID Not Found $id")
         }
+    }
+
+    fun findByCnpj(cnpj: String): Company{
+        return companyRepository.findByCnpj(cnpj)
     }
 
     fun validationDateCompanySave(company: Company) {

@@ -52,6 +52,7 @@ class EmployeeService(val employeeRepository: EmployeeRepository) {
     }
 
     fun findBySetor(setor:String): MutableList<Employee>{
+
         return employeeRepository.findBySetorIgnoreCase(setor)
     }
 
