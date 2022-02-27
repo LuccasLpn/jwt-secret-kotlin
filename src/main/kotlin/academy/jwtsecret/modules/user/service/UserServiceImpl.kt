@@ -16,4 +16,5 @@ class UserServiceImpl(val userRepository: UserRepository):UserDetailsService{
         val user = username?.let { userRepository.findByUsername(it) } ?: throw UsernameNotFoundException(username)
         return UserSS(user)
     }
+
 }
