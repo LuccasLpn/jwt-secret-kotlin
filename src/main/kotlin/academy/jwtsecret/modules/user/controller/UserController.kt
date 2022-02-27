@@ -7,6 +7,7 @@ import academy.jwtsecret.modules.user.service.UserService
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -26,11 +27,6 @@ class UserController(private val userService: UserService){
         return ResponseEntity(findById, HttpStatus.OK)
     }
 
-    @GetMapping(path = ["/findByEmail/{email}"])
-    fun findByEmail(@PathVariable email:String): ResponseEntity<MutableList<User>>{
-        val findByEmail = userService.findByEmailIgnoreCase(email)
-        return ResponseEntity(findByEmail, HttpStatus.OK)
-    }
 
     @PutMapping(path = ["/update"])
     fun update(@RequestBody userPut: UserPut): ResponseEntity<User>{
@@ -45,6 +41,7 @@ class UserController(private val userService: UserService){
     }
 
     @GetMapping(path = ["/findAllUser"])
+    @PreAuthorize ("hasRole('ROLE_ADMIN')")
     fun findAll(): ResponseEntity<MutableList<User>>{
         val findAllUser = userService.findAll()
         return ResponseEntity(findAllUser, HttpStatus.OK)

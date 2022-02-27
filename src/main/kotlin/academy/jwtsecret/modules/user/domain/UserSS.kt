@@ -15,7 +15,7 @@ class UserSS(private val user: User):UserDetails{
     }
 
     override fun getPassword() = user.password
-    override fun getUsername() = user.username
+    override fun getUsername() = user.email
     override fun isAccountNonExpired() = true
     override fun isAccountNonLocked() = true
     override fun isCredentialsNonExpired() = true

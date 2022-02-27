@@ -28,10 +28,6 @@ class UserService(val userRepository: UserRepository){
         }
     }
 
-    fun findByEmailIgnoreCase(email: String): MutableList<User> {
-        return userRepository.findByEmailIgnoreCase(email)
-    }
-
     fun update(userPut: UserPut): User {
         userPut.password = bCryptPasswordEncoder().encode(userPut.password)
         userPut.id?.let { findById(it) }

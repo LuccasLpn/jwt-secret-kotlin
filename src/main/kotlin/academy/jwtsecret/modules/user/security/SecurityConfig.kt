@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
@@ -15,13 +16,17 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-class SecurityConfig (val userServiceImpl: UserServiceImpl): WebSecurityConfigurerAdapter() {
+class SecurityConfig (var userServiceImpl: UserServiceImpl,
+                      var jwtUtil: JWTUtil): WebSecurityConfigurerAdapter() {
 
 
     override fun configure(http: HttpSecurity) {
         http.csrf().disable().authorizeRequests()
             .antMatchers(HttpMethod.POST, "/api/user/save").permitAll()
             .anyRequest().authenticated()
+        http.addFilter(JWTAuthenticationFilter(authenticationManager(), jwtUtil = jwtUtil))
+        http.addFilter(JWTAuthorizationFilter(authenticationManager(), jwtUtil = jwtUtil, userDetailService = userServiceImpl))
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
     }
 

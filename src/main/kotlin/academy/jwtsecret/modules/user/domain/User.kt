@@ -21,5 +21,4 @@ class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     var authorities: String? = null
 
-
 }

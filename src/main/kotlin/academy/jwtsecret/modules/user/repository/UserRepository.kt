@@ -6,7 +6,7 @@ import java.util.*
 
 interface UserRepository : JpaRepository<User, Long> {
 
-    fun findByEmailIgnoreCase(email: String): MutableList<User>
+    fun findByEmail(email: String): User
     fun findByUsername(username: String): User
     fun findByAuthorities(authorities: String): User
 

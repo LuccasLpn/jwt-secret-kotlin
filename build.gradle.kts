@@ -42,6 +42,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("javax.validation:validation-api:2.0.1.Final")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+	implementation("io.jsonwebtoken:jjwt:0.9.1")
 }
 
 tasks.withType<KotlinCompile> {
