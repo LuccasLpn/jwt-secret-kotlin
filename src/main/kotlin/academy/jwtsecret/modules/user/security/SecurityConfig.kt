@@ -20,9 +20,13 @@ class SecurityConfig (var userServiceImpl: UserServiceImpl,
                       var jwtUtil: JWTUtil): WebSecurityConfigurerAdapter() {
 
 
+
     override fun configure(http: HttpSecurity) {
         http.csrf().disable().authorizeRequests()
             .antMatchers(HttpMethod.POST, "/api/user/save").permitAll()
+            .antMatchers("/api/user/**").hasRole("ADMIN")
+            .antMatchers("/api/company/**").hasRole("ADMIN")
+            .antMatchers("/api/employee/**").hasRole("ADMIN")
             .anyRequest().authenticated()
         http.addFilter(JWTAuthenticationFilter(authenticationManager(), jwtUtil = jwtUtil))
         http.addFilter(JWTAuthorizationFilter(authenticationManager(), jwtUtil = jwtUtil, userDetailService = userServiceImpl))

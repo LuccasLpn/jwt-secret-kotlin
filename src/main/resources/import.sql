@@ -1,2 +1,0 @@
-INSERT INTO tb_employee (ID, NAME, CARGO, SETOR) VALUES (1, 'Luccas', 'Developer Jr', 'Developer')
-INSERT INTO tb_company (ID, NAME, CNPJ, EMPLOYEE_NAME) VALUES (1, 'WS WORK', '56853198000100', 'Luccas')

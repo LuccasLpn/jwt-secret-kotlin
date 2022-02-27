@@ -19,4 +19,4 @@ spring:
     show-sql: true
 
 jwt:
-  secret: WSWORKPORJECTKOTLIN
+  secret: VEVOVEFERUNPRElGSUNBUkVTU0FQT0hBQVFVSQ==

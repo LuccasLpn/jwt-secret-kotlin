@@ -7,6 +7,7 @@ import academy.jwtsecret.modules.user.service.UserService
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.annotation.Secured
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
@@ -27,7 +28,6 @@ class UserController(private val userService: UserService){
         return ResponseEntity(findById, HttpStatus.OK)
     }
 
-
     @PutMapping(path = ["/update"])
     fun update(@RequestBody userPut: UserPut): ResponseEntity<User>{
         val update = userService.update(userPut)
@@ -41,7 +41,6 @@ class UserController(private val userService: UserService){
     }
 
     @GetMapping(path = ["/findAllUser"])
-    @PreAuthorize ("hasRole('ROLE_ADMIN')")
     fun findAll(): ResponseEntity<MutableList<User>>{
         val findAllUser = userService.findAll()
         return ResponseEntity(findAllUser, HttpStatus.OK)
