@@ -47,4 +47,10 @@ class CompanyController (val companyService: CompanyService){
         return ResponseEntity(findByCnpj, HttpStatus.OK)
     }
 
+    @GetMapping(path = ["/findByName/{name}"])
+    fun findByName(@PathVariable name: String): ResponseEntity<MutableList<Company>>{
+        val findByName = companyService.findByName(name)
+        return ResponseEntity(findByName, HttpStatus.OK)
+    }
+
 }

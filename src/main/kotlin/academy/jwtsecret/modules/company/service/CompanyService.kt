@@ -50,6 +50,10 @@ class CompanyService (val companyRepository: CompanyRepository,
         }
     }
 
+    fun findByName(name: String): MutableList<Company>{
+        return companyRepository.findByName(name)
+    }
+
     fun findByCnpj(cnpj: String): Company{
         return companyRepository.findByCnpj(cnpj)
     }
