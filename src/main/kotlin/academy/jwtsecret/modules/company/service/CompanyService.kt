@@ -58,6 +58,10 @@ class CompanyService (val companyRepository: CompanyRepository,
         return companyRepository.findByNameIgnoreCase(name)
     }
 
+    fun findByNameIgnoreCaseContaining(name: String): MutableList<Company>{
+        return companyRepository.findByNameIgnoreCaseContaining(name)
+    }
+
     fun findByCnpj(cnpj: String): Company{
         return companyRepository.findByCnpj(cnpj)
     }

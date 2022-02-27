@@ -59,4 +59,10 @@ class CompanyController (val companyService: CompanyService){
         return ResponseEntity(findByNameIgnoreCase, HttpStatus.OK)
     }
 
+    @GetMapping(path = ["/findByNameIgnoreCaseContaining/{name}"])
+    fun findByNameIgnoreCaseContaining(@PathVariable name: String): ResponseEntity<MutableList<Company>>{
+        val findByNameIgnoreCaseContaining = companyService.findByNameIgnoreCaseContaining(name)
+        return ResponseEntity(findByNameIgnoreCaseContaining, HttpStatus.OK)
+    }
+
 }

@@ -8,4 +8,5 @@ interface CompanyRepository: JpaRepository<Company, Long>{
     fun findByCnpj(cnpj: String): Company
     fun findByName(name: String): MutableList<Company>
     fun findByNameIgnoreCase(name: String): MutableList<Company>
+    fun findByNameIgnoreCaseContaining(name: String): MutableList<Company>
 }
