@@ -25,7 +25,6 @@ class EmployeeController (val employeeService: EmployeeService){
 
     @PostMapping(path = ["/save"])
     fun save(@RequestBody @Valid employeePost: EmployeePost): ResponseEntity<Employee>{
-
         val savedEmployee = employeeService.save(employeePost)
         return ResponseEntity(savedEmployee, HttpStatus.CREATED)
     }

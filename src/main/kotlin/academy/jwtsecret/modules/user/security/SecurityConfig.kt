@@ -27,6 +27,7 @@ class SecurityConfig (var userServiceImpl: UserServiceImpl,
             .antMatchers("/api/user/**").hasRole("ADMIN")
             .antMatchers("/api/company/**").hasRole("ADMIN")
             .antMatchers("/api/employee/**").hasRole("ADMIN")
+            .antMatchers("/api/employee/**").hasRole("ADMIN")
             .anyRequest().authenticated()
         http.addFilter(JWTAuthenticationFilter(authenticationManager(), jwtUtil = jwtUtil))
         http.addFilter(JWTAuthorizationFilter(authenticationManager(), jwtUtil = jwtUtil, userDetailService = userServiceImpl))

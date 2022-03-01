@@ -1,3 +1,9 @@
+version: '2.4'
+x-database-variables: &database-variables
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/jwtsecret?&createDatabaseIfNotExist=true
+  SPRING_DATASOURCE_USERNAME: root
+  SPRING_DATASOURCE_PASSWORD: root
+
 server:
   error:
     include-stacktrace: on_param
@@ -17,6 +23,14 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
+
+  springboot:
+    image: companyapi/springboot:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    enviroment:
+      <<: *database-variables
+    mem_limit: 512m
 
 jwt:
   secret: VEVOVEFERUNPRElGSUNBUkVTU0FQT0hBQVFVSQ==
