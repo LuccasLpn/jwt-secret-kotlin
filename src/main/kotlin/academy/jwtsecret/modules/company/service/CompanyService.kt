@@ -11,6 +11,7 @@ import br.com.caelum.stella.validation.CNPJValidator
 import lombok.RequiredArgsConstructor
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +22,7 @@ class CompanyService (val companyRepository: CompanyRepository,
         val employeeName = companyPost.nameEmployee?.let { employeeRepository.findByNameIgnoreCase(it) }
         val companyPostSave = CompanyMapper.INSTACE.toPost(companyPost)
         companyPostSave.employee = employeeName
+        companyPostSave.dataRegister = Date()
         validationDateCompanySave(companyPostSave)
         CNPJValidator().assertValid(companyPostSave.cnpj)
         return companyRepository.save(companyPostSave)
