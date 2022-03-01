@@ -7,6 +7,7 @@ import academy.jwtsecret.modules.company.request.CompanyPost
 import academy.jwtsecret.modules.company.request.CompanyPut
 import academy.jwtsecret.modules.employee.repository.EmployeeRepository
 import academy.jwtsecret.modules.exception.ValidationException
+import br.com.caelum.stella.validation.CNPJValidator
 import lombok.RequiredArgsConstructor
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
@@ -21,6 +22,7 @@ class CompanyService (val companyRepository: CompanyRepository,
         val companyPostSave = CompanyMapper.INSTACE.toPost(companyPost)
         companyPostSave.employee = employeeName
         validationDateCompanySave(companyPostSave)
+        CNPJValidator().assertValid(companyPostSave.cnpj)
         return companyRepository.save(companyPostSave)
     }
 
@@ -73,4 +75,5 @@ class CompanyService (val companyRepository: CompanyRepository,
             throw ValidationException("Company Cnpj is Not Null")
         }
     }
+
 }
