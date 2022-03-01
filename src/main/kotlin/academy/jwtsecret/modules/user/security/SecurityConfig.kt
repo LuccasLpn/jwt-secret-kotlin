@@ -26,6 +26,7 @@ class SecurityConfig (var userServiceImpl: UserServiceImpl,
             .antMatchers(HttpMethod.POST, "/api/user/save").permitAll()
             .antMatchers("/api/user/**").hasRole("ADMIN")
             .antMatchers("/api/company/**").hasRole("ADMIN")
+            .antMatchers("/api/company/**").hasRole("ADMIN")
             .antMatchers("/api/employee/**").hasRole("ADMIN")
             .antMatchers("/api/employee/**").hasRole("ADMIN")
             .anyRequest().authenticated()
