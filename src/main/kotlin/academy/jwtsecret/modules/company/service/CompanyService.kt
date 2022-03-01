@@ -39,7 +39,6 @@ class CompanyService (val companyRepository: CompanyRepository,
         return "Delete SuccessFull Company ID $id"
     }
 
-
     fun findAll(): MutableList<Company>{
         return companyRepository.findAll(Sort.by(Sort.Direction.ASC, "employee_name"))
     }
