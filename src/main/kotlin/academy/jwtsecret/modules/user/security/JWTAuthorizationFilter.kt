@@ -18,10 +18,11 @@ class JWTAuthorizationFilter(
     private var userDetailService: UserDetailsService
 ) : BasicAuthenticationFilter(authenticationManager) {
 
-    override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
+    override fun doFilterInternal(request: HttpServletRequest,
+                                  response: HttpServletResponse,
+                                  chain: FilterChain) {
         val authorizationHeader = request.getHeader(authorization)
-
-        if(authorizationHeader.startsWith(bearer)) {
+        if(authorizationHeader != null && authorizationHeader.startsWith(bearer)) {
             val auth = getAuthentication(authorizationHeader)
             SecurityContextHolder.getContext().authentication = auth
         }
