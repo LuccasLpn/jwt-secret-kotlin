@@ -19,7 +19,7 @@ class UserService(val userRepository: UserRepository){
     fun save(userPost: UserPost): User {
         userPost.password = bCryptPasswordEncoder().encode(userPost.password)
         val savedUser = UserMapper.INSTACE.toPost(userPost)
-       /* savedUser.authorities = "ROLE_USER"*/
+        savedUser.authorities = "ROLE_USER"
         return userRepository.save(savedUser)
     }
 

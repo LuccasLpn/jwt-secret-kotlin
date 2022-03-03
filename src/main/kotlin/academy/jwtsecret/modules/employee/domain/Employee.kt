@@ -1,11 +1,11 @@
 package academy.jwtsecret.modules.employee.domain
 
+import academy.jwtsecret.modules.company.domain.Company
+import com.fasterxml.jackson.annotation.JsonFormat
 import lombok.AllArgsConstructor
 import lombok.NoArgsConstructor
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import java.util.Date
+import javax.persistence.*
 
 
 @Entity(name = "TB_EMPLOYEE")
@@ -18,6 +18,8 @@ class Employee {
     var id: Long? = null
     var name: String? = null
     var cargo: String? = null
-    var setor: String? = null
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    var birthDate: Date? = null
+    var cpf: String? = null
 
 }

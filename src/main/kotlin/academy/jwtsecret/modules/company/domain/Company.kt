@@ -21,7 +21,7 @@ class Company {
     @Column(name = "CNPJ")
     var cnpj: String? = null
     @Column(name = "DATA")
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     var dataRegister: Date? = null
     @ManyToOne(cascade = [( CascadeType.ALL)])
     @JoinColumn(name = "employee_name", referencedColumnName = "name")

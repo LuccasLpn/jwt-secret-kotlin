@@ -43,6 +43,7 @@ dependencies {
 	implementation("javax.validation:validation-api:2.0.1.Final")
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 	implementation("io.jsonwebtoken:jjwt:0.9.1")
+	implementation("org.springframework.boot:spring-boot-devtools")
 	implementation("br.com.caelum.stella:caelum-stella-core:2.1.5")
 }
 

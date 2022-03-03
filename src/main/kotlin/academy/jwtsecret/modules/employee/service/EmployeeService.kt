@@ -6,16 +6,21 @@ import academy.jwtsecret.modules.employee.repository.EmployeeRepository
 import academy.jwtsecret.modules.employee.request.EmployeePost
 import academy.jwtsecret.modules.employee.request.EmployeePut
 import academy.jwtsecret.modules.exception.ValidationException
+import br.com.caelum.stella.validation.CPFValidator
 import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Service
+import java.text.SimpleDateFormat
 
 @Service
 @RequiredArgsConstructor
-class EmployeeService(val employeeRepository: EmployeeRepository) {
+class EmployeeService(val employeeRepository: EmployeeRepository){
 
     fun save(employeePost: EmployeePost): Employee{
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
         val savedPost = EmployeeMapper.INSTACE.toPost(employeePost)
+        sdf.format(savedPost.birthDate)
         validationDateEmployeeSaved(savedPost)
+        CPFValidator().assertValid(savedPost.cpf)
         return employeeRepository.save(savedPost)
     }
 
