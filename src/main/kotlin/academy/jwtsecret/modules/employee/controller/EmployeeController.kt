@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.text.SimpleDateFormat
 import javax.validation.Valid
 
 @RestController
@@ -25,6 +26,8 @@ class EmployeeController (val employeeService: EmployeeService){
 
     @PostMapping(path = ["/save"])
     fun save(@RequestBody @Valid employeePost: EmployeePost): ResponseEntity<Employee>{
+        val sdf = SimpleDateFormat("dd/MM/yyyy")
+        sdf.format(employeePost.birthDate)
         val savedEmployee = employeeService.save(employeePost)
         return ResponseEntity(savedEmployee, HttpStatus.CREATED)
     }

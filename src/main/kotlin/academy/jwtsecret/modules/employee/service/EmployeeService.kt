@@ -16,9 +16,7 @@ import java.text.SimpleDateFormat
 class EmployeeService(val employeeRepository: EmployeeRepository){
 
     fun save(employeePost: EmployeePost): Employee{
-        val sdf = SimpleDateFormat("dd/MM/yyyy")
         val savedPost = EmployeeMapper.INSTACE.toPost(employeePost)
-        sdf.format(savedPost.birthDate)
         validationDateEmployeeSaved(savedPost)
         CPFValidator().assertValid(savedPost.cpf)
         return employeeRepository.save(savedPost)
@@ -72,8 +70,8 @@ class EmployeeService(val employeeRepository: EmployeeRepository){
         if (employee.name!!.isEmpty()){
             throw ValidationException("Employee Name is Not Null")
         }
-        if(employee.setor!!.isEmpty()){
-            throw ValidationException("Employee Setor is Not Null")
+        if(employee.cpf!!.isEmpty()){
+            throw ValidationException("Employee CPF is Not Null")
         }
     }
 

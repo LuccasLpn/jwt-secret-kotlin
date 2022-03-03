@@ -18,8 +18,10 @@ class Employee {
     var id: Long? = null
     var name: String? = null
     var cargo: String? = null
+    var setor: String? = null
     @JsonFormat(pattern = "dd/MM/yyyy")
     var birthDate: Date? = null
     var cpf: String? = null
+    var salary: Double? = null
 
 }
