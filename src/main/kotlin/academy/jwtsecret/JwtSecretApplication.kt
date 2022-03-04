@@ -9,3 +9,5 @@ class JwtSecretApplication
 fun main(args: Array<String>) {
 	runApplication<JwtSecretApplication>(*args)
 }
+
+

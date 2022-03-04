@@ -7,6 +7,11 @@ x-database-variables: &database-variables
 server:
   error:
     include-stacktrace: on_param
+  ###port: 8443
+  ##ssl:
+   ##key-store: keyStore.p12
+    ##key-store-password: springboot
+    ##keyStoreType: PKCS12
 
 spring:
   application:
