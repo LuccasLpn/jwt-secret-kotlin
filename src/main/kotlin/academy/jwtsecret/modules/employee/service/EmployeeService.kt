@@ -9,7 +9,6 @@ import academy.jwtsecret.modules.exception.ValidationException
 import br.com.caelum.stella.validation.CPFValidator
 import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Service
-import java.text.SimpleDateFormat
 
 @Service
 @RequiredArgsConstructor
