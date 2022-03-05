@@ -27,7 +27,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    show-sql: true
+    show-sql: false
 
   springboot:
     image: companyapi/springboot:0.0.1-SNAPSHOT
