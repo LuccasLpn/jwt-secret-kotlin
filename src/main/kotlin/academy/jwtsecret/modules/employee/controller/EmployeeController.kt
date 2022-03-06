@@ -34,6 +34,7 @@ class EmployeeController (val employeeService: EmployeeService){
     }
 
     @PutMapping(path = ["/update"])
+    @Operation(description = "update")
     fun update(@RequestBody employeePut: EmployeePut): ResponseEntity<Employee>{
         val updateEmployee = employeeService.update(employeePut)
         return ResponseEntity(updateEmployee, HttpStatus.OK)
