@@ -40,6 +40,7 @@ class EmployeeController (val employeeService: EmployeeService){
     }
 
     @DeleteMapping(path = ["/delete/{id}"])
+    @Operation(description = "delete")
     fun delete(@PathVariable id: Long): ResponseEntity<Any>{
         val deleteEmployee = employeeService.delete(id)
         return ResponseEntity(deleteEmployee, HttpStatus.OK)
