@@ -26,6 +26,7 @@ import javax.validation.Valid
 class EmployeeController (val employeeService: EmployeeService){
 
     @PostMapping(path = ["/save"])
+    @Operation(description = "save")
     fun save(@RequestBody @Valid employeePost: EmployeePost): ResponseEntity<Employee>{
         val sdf = SimpleDateFormat("dd/MM/yyyy")
         sdf.format(employeePost.birthDate)
