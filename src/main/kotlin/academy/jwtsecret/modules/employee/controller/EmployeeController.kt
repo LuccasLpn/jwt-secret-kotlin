@@ -5,6 +5,7 @@ import academy.jwtsecret.modules.employee.request.EmployeePost
 import academy.jwtsecret.modules.employee.request.EmployeePut
 import academy.jwtsecret.modules.employee.service.EmployeeService
 import academy.jwtsecret.modules.exception.ValidationException
+import io.swagger.v3.oas.annotations.Operation
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -75,6 +76,7 @@ class EmployeeController (val employeeService: EmployeeService){
     }
 
     @GetMapping(path = ["/findBySetorContaining/{setor}"])
+    @Operation(description = "findBySetorContaining")
     fun findBySetorContaining(@PathVariable setor: String): ResponseEntity<MutableList<Employee>>{
         val findBySetor = employeeService.findBySetorContaining(setor)
         return ResponseEntity(findBySetor, HttpStatus.OK)
