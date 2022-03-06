@@ -52,6 +52,7 @@ class EmployeeController (val employeeService: EmployeeService){
     }
 
     @GetMapping(path = ["/findById/{id}"])
+    @Operation(description = "findById")
     fun findById(@PathVariable id:Long): ResponseEntity<Employee>{
         val findByIdEmployee = employeeService.findById(id)
         return ResponseEntity(findByIdEmployee,HttpStatus.OK)
