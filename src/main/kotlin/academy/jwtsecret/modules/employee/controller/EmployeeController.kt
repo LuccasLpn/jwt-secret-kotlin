@@ -46,6 +46,7 @@ class EmployeeController (val employeeService: EmployeeService){
     }
 
     @GetMapping(path = ["/findAllEmployee"])
+    @Operation(description = "findAllEmployee")
     fun findAll(): ResponseEntity<MutableList<Employee>>{
         val findAllEmployee = employeeService.findAll()
         return ResponseEntity(findAllEmployee,HttpStatus.OK)
