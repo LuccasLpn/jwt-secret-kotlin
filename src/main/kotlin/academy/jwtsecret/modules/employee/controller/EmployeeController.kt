@@ -58,6 +58,7 @@ class EmployeeController (val employeeService: EmployeeService){
     }
 
     @GetMapping(path = ["/findByName/{name}"])
+    @Operation(description = "findByName")
     fun findByName(@PathVariable name:String): ResponseEntity<Employee>{
         val findByNameEmployee = employeeService.findByName(name)
         return ResponseEntity(findByNameEmployee, HttpStatus.OK)
