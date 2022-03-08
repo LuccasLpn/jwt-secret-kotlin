@@ -25,6 +25,7 @@ class CompanyController (val companyService: CompanyService){
     }
 
     @PutMapping(path = ["/update"])
+    @Operation(description = "update")
     fun update(@RequestBody companyPut: CompanyPut): ResponseEntity<Company>{
         val updateCompany = companyService.update(companyPut)
         return ResponseEntity(updateCompany, HttpStatus.OK)
