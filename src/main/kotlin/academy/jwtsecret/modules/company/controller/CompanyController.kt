@@ -4,6 +4,7 @@ import academy.jwtsecret.modules.company.domain.Company
 import academy.jwtsecret.modules.company.request.CompanyPost
 import academy.jwtsecret.modules.company.request.CompanyPut
 import academy.jwtsecret.modules.company.service.CompanyService
+import io.swagger.v3.oas.annotations.Operation
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -53,6 +54,7 @@ class CompanyController (val companyService: CompanyService){
     }
 
     @GetMapping(path = ["/findByName/{name}"])
+    @Operation(description = "findByName")
     fun findByName(@PathVariable name: String): ResponseEntity<MutableList<Company>>{
         val findByName = companyService.findByName(name)
         return ResponseEntity(findByName, HttpStatus.OK)
