@@ -17,6 +17,7 @@ class CompanyController (val companyService: CompanyService){
 
 
     @PostMapping(path = ["/save"])
+    @Operation(description = "save")
     fun save(@RequestBody @Valid
         companyPost: CompanyPost): ResponseEntity<Company>{
         val saveCompany = companyService.save(companyPost)
