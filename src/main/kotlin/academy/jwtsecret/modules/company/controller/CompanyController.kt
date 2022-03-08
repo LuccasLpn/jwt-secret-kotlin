@@ -46,6 +46,7 @@ class CompanyController (val companyService: CompanyService){
     }
 
     @GetMapping(path = ["/findByCnpj/{cnpj}"])
+    @Operation(description = "findByCnpj")
     fun findByCnpj(@PathVariable cnpj: String): ResponseEntity<Company>{
         val findByCnpj = companyService.findByCnpj(cnpj)
         return ResponseEntity(findByCnpj, HttpStatus.OK)
