@@ -39,6 +39,7 @@ class CompanyController (val companyService: CompanyService){
     }
 
     @GetMapping(path = ["/findAllCompany"])
+    @Operation(description = "findAllCompany")
     fun findAll(): ResponseEntity<MutableList<Company>>{
         val findAllCompany = companyService.findAll()
         return ResponseEntity(findAllCompany, HttpStatus.OK)
