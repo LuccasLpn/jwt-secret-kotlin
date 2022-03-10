@@ -18,7 +18,6 @@ class CompanyController (val companyService: CompanyService){
 
 
     @PostMapping(path = ["/save"])
-    @Operation(description = "save")
     fun save(@RequestBody @Valid
         companyPost: CompanyPost): ResponseEntity<Company>{
         val saveCompany = companyService.save(companyPost)
@@ -26,7 +25,6 @@ class CompanyController (val companyService: CompanyService){
     }
 
     @PutMapping(path = ["/update"])
-    @Operation(description = "update")
     fun update(@RequestBody companyPut: CompanyPut): ResponseEntity<Company>{
         val updateCompany = companyService.update(companyPut)
         return ResponseEntity(updateCompany, HttpStatus.OK)
