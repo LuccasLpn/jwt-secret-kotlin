@@ -44,7 +44,7 @@ class CompanyController (val companyService: CompanyService){
     }
 
     @GetMapping(path = ["/findByCnpj/{cnpj}"])
-    @Operation(description = "findByCnpj")
+
     fun findByCnpj(@PathVariable cnpj: String): ResponseEntity<Company>{
         val findByCnpj = companyService.findByCnpj(cnpj)
         return ResponseEntity(findByCnpj, HttpStatus.OK)
@@ -63,7 +63,6 @@ class CompanyController (val companyService: CompanyService){
     }
 
     @GetMapping(path = ["/findByNameIgnoreCaseContaining/{name}"])
-    @Operation(description = "findByNameIgnoreCaseContaining")
     fun findByNameIgnoreCaseContaining(@PathVariable name: String): ResponseEntity<MutableList<Company>>{
         val findByNameIgnoreCaseContaining = companyService.findByNameIgnoreCaseContaining(name)
         return ResponseEntity(findByNameIgnoreCaseContaining, HttpStatus.OK)
